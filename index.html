@@ -5,102 +5,83 @@
   <title>Khaana BBQ Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body {
-      margin: 0;
-      font-family: "Times New Roman", Times, serif;
-      background: #ffa860;
-      color: #241615;
-      line-height: 1.5;
+    :root{
+      --orange:#ffa860;   /* simpler, lighter orange */
+      --brown:#3b2623;
+      --cream:#ffffff;    /* plain white panels */
+      --accent:#9a5d3b;
+      --ink:#241615;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Times New Roman", Times, serif;
+      background:var(--orange);   /* solid color (no gradients) */
+      color:var(--ink);
+      line-height:1.55;
     }
 
-    header {
-      padding: 16px;
-      text-align: center;
-      background: #ffd8b4;
+    /* Basic header (no sticky glass effect) */
+    header{
+      padding:16px 12px;
+      text-align:center;
+      background:#ffd8b4;         /* flat light bar */
+      border-bottom:1px solid #e2b28f;
+    }
+    h1,h2,h3{
+      font-family:Calibri, "Segoe UI", Arial, sans-serif;
+      margin:.3em 0;
+      color:var(--brown);
+    }
+    h1{ font-size:1.9rem; text-transform:uppercase; }
+    h2{ font-size:1.25rem; }
+
+    /* Plain wrapper with thin border (no shadow, minimal radius) */
+    .wrap{
+      max-width:900px;
+      margin:18px auto 28px;
+      background:var(--cream);
+      border:1px solid #d9c4b7;
+      border-radius:8px;
     }
 
-    h1, h2 {
-      font-family: Calibri, Arial, sans-serif;
-      color: #3b2623;
-      margin: 0.5em 0;
+    /* Simple hero section (no gradients) */
+    .hero{ padding:16px 16px 6px; border-bottom:1px solid #e8d7cb; }
+    .eyebrow{
+      display:inline-block; padding:4px 8px; font-size:.85rem;
+      background:#fff1e5; color:#7a442c; border:1px solid #e6c4ae; border-radius:6px;
+    }
+    .panel{ padding:16px; border-top:1px solid #f0e4db; }
+
+    /* Simple grid -> becomes two columns only on wide screens */
+    .grid{
+      display:grid; gap:10px;
+      grid-template-columns: 1fr;      /* single column default */
+    }
+    @media (min-width: 760px){
+      .grid{ grid-template-columns: 1fr 1fr; }
     }
 
-    h1 {
-      font-size: 1.9rem;
-      text-transform: uppercase;
+    /* Cards are just boxes with thin borders (no hover, tiny radius) */
+    .card{
+      background:#fff;
+      border:1px solid #ebdfd6;
+      border-radius:6px;
+      padding:12px;
     }
 
-    h2 {
-      font-size: 1.25rem;
+    a{ color:#8b2e00; }
+    .mini{ font-size:0.95rem; }
+    ul,ol{ padding-left:20px; }
+
+    /* Flat button (no shadow/animation) */
+    .btn{
+      display:inline-block; padding:10px 12px;
+      border:1px solid #7a442c; border-radius:6px;
+      background:#f3e0d4; color:#7a442c; text-decoration:none; font-weight:bold;
     }
 
-    .wrap {
-      max-width: 900px;
-      margin: 20px auto;
-      background: #fff;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    .hero {
-      padding: 16px;
-      text-align: center;
-    }
-
-    .hero img {
-      max-width: 100%;
-      border-radius: 6px;
-      margin-bottom: 12px;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      padding: 4px 8px;
-      font-size: 0.85rem;
-      background: #fff1e5;
-      color: #7a442c;
-      border: 1px solid #e6c4ae;
-      border-radius: 6px;
-    }
-
-    .panel {
-      padding: 16px;
-    }
-
-    .grid {
-      display: grid;
-      gap: 10px;
-    }
-
-    .card {
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      padding: 10px;
-    }
-
-    a { color: #8b2e00; }
-
-    .mini { font-size: 0.9rem; }
-
-    ul, ol { padding-left: 20px; }
-
-    .btn {
-      display: inline-block;
-      padding: 8px 12px;
-      border: 1px solid #7a442c;
-      border-radius: 4px;
-      background: #f3e0d4;
-      color: #7a442c;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .footer {
-      padding: 10px;
-      text-align: center;
-      color: #5b4a44;
-    }
+    .footer{ padding:10px 12px 18px; text-align:center; color:#5b4a44; }
   </style>
 </head>
 <body>
@@ -111,9 +92,7 @@
 
   <main class="wrap">
     <section class="hero">
-      <!-- Embedded BBQ ribs picture -->
-      <img src="data:image/jpeg;base64,PUT_LONG_CODE_HERE" alt="BBQ ribs on a tray">
-      <div>
+      <div class="copy">
         <span class="eyebrow"> Ready To Provide! </span>
         <h2>More than food — <span style="color:#8b2e00;"><b>we run your event</b></span>.</h2>
         <p>
@@ -131,12 +110,22 @@
     <section class="panel">
       <h2>What we do</h2>
       <div class="grid">
-        <div class="card"><p><b>Full-Service Catering</b> — We design a menu around your needs, then
-        communicate <i>all the way from the delievery to cleanup</i>. Our <span style="color:#8b2e00;">chef station</span> cooks up the best tasting ribs from the smoker for something you can post on social media.</p></div>
-        <div class="card"><p><b>Drop-Off &amp; Setup</b> — Cheap. We bring labeled pans, chafers with fuel, and a whole guide so your team can host without any complications.</p></div>
-        <div class="card"><p><b>Game-Day &amp; Tailgate Packs</b> — Rib racks, trays of Mac &amp; Cheese, sauces by the bottle, and warming kits for all those hungry families.</p></div>
-        <div class="card"><p><b>Fundraisers &amp; Student Orginizations</b> — Profit-share nights and <i>sauce-bottling workshops</i>. We provide sign up sheets and QR codes to make it as convenient as possible.</p></div>
-        <div class="card"><p><b>Corporate &amp; Weddings</b> — Timelines, staffing plans, and rental coordination with warmers and buffet tables, making this a stress free wedding.</p></div>
+        <div class="card">
+          <p><b>Full-Service Catering</b> — We design a menu around your headcount and venue, then
+          coordinate <i>delivery, setup, service, and cleanup</i>. Our <span style="color:#8b2e00;">pitmaster station</span> carves ribs hot from the smoker for a made-for-Instagram moment.</p>
+        </div>
+        <div class="card">
+          <p><b>Drop-Off &amp; Setup</b> — Budget-friendly. We bring labeled pans, chafers with fuel, and a layout guide so your team can host like pros.</p>
+        </div>
+        <div class="card">
+          <p><b>Game-Day &amp; Tailgate Packs</b> — Rib racks, trays of Mac &amp; Cheese, sauces by the bottle, and disposable warming kits sized for lots of hungry fans.</p>
+        </div>
+        <div class="card">
+          <p><b>Fundraisers &amp; Student Orgs</b> — Profit-share nights and <i>sauce-bottling workshops</i>. We provide sign templates and QR codes for easy promos.</p>
+        </div>
+        <div class="card">
+          <p><b>Corporate &amp; Weddings</b> — Timelines, staffing plans, rental coordination (warmers, cambros, buffet tables) and a rain plan. One contact; zero stress.</p>
+        </div>
       </div>
     </section>
 
